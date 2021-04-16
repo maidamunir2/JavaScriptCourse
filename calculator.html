@@ -1,0 +1,150 @@
+<html>
+   <head>
+      <script>
+	     var array = []
+		 var operator = null
+		 var count = 0
+		 var i =0
+         function textField(val)
+         { 
+		      array.push(val)
+			 console.log(array)
+             document.getElementById("result").value+=val
+         }
+         function solve()
+         {
+		 
+		    var string = document.getElementById("result").value
+		
+			for (i = 0; i<=array.length; i++)
+			{
+			  if(array[i] == '+' || array[i] == '-' || array[i] == '*' || array[i] == '/')
+			  {operator=array[i]
+			  console.log(operator)
+			  count+=1
+			  }
+			  else
+			  {
+			  console.log("No Operator Find Yet")
+			  }
+			}
+			if(count>1)
+			{
+			 count = 0
+			 alert("Its a two operand calculator You can not enter operator more than 1")
+			 
+			}
+			else
+			{
+			switch(true){
+			
+			case(operator =='+'):
+			   var val= string.split('+')
+			   console.log(operator)
+			   console.log(array)
+			   var number1 = +val[0]
+			   var number2 = +val[1]
+		       b = number1+number2
+			   document.getElementById("result").value = b
+			   operator = null
+			  array = []
+			   console.log(array)
+			   count = 0
+               break;
+            case(operator =='-'):
+			   var val= string.split('-')
+			   console.log(operator)
+			   console.log(array)
+			   var number1 = +val[0]
+			   var number2 = +val[1]
+		       b = number1-number2
+			   document.getElementById("result").value = b
+			   operator = null
+			  array = []
+			   console.log(array)
+			   count = 0
+               break;	
+            case(operator =='*'):
+			   var val= string.split('*')
+			   console.log(operator)
+			   console.log(array)
+			   var number1 = +val[0]
+			   var number2 = +val[1]
+		       b = number1*number2
+			   document.getElementById("result").value = b
+			   operator = null
+			  array = []
+			   console.log(array)
+			   count = 0
+               break;
+            case(operator =='/'):
+			   var val= string.split('/')
+			   console.log(operator)
+			   console.log(array)
+			   var number1 = +val[0]
+			   var number2 = +val[1]
+		       b = number1/number2
+			   document.getElementById("result").value = b
+			   operator = null
+			  array = []
+			   console.log(array)
+			   count = 0
+               break;				   
+			}
+			  }        
+         }
+         function clr()
+         {
+             document.getElementById("result").value = ""
+			 array = []
+			 count = 0
+         }
+		 function backspace()
+		 {
+		    var val = document.getElementById("result").value
+			array.pop()
+			document.getElementById("result").value = val.substr(0,val.length - 1)
+		 }
+		 
+      </script>
+
+  
+   </head>
+
+   <body style="margin:200px; margin-left:550px"  >
+      
+      <table border="1">
+         <tr>
+            <td colspan="4"><input style="width:100%"  type="text" id="result" readonly/></td>
+         </tr>
+		 <tr>
+		    <td > <button style="width:100%" onclick="textField('.')">.</button> </td>   	 
+           	<td colspan="4"> <button style="width:100%" onclick="backspace()">Backspace</button></td>    	
+         </tr>
+         <tr>
+		    <td> <button style="width:100%" onclick="textField('1')">1</button> </td>
+            <td> <button style="width:100%" onclick="textField('2')">2</button> </td>
+            <td> <button style="width:100%" onclick="textField('3')">3</button> </td>
+           <td> <button style="width:100%" onclick="textField('+')">Add</button> </td>
+         </tr>
+         <tr>
+		    <td> <button style="width:100%" onclick="textField('4')">4</button> </td>
+            <td> <button style="width:100%" onclick="textField('5')">5</button> </td>
+            <td> <button style="width:100%" onclick="textField('6')">6</button> </td>
+         	<td> <button style="width:100%" onclick="textField('-')">Subtract</button> </td>  
+         </tr>
+         <tr>
+		    <td> <button style="width:100%" onclick="textField('7')">7</button> </td>
+            <td> <button style="width:100%" onclick="textField('8')">8</button> </td>
+            <td> <button style="width:100%" onclick="textField('9')">9</button> </td>
+			<td> <button style="width:100%" onclick="textField('*')">Multiply</button> </td>
+         </tr>
+         <tr>
+		    <td > <button style="width:100%" onclick="clr()">Clear</button> </td>
+		    <td> <button style="width:100%" onclick="textField('0')">0</button> </td>
+			<td> <button style="width:100%" onclick="textField('/')">Divide</button> </td>
+			<td> <button style="width:100%" onclick="solve()">=</button> </td>		   		
+         </tr>
+      </table>
+   </body>
+</html> 
