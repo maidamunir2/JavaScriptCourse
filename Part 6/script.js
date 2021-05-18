@@ -15,6 +15,15 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1},${ing2} and ${ing3}`
+    );
+  },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
   orderDelivery: function (obj) {
     console.log(obj);
   },
@@ -104,3 +113,249 @@ restaurant.orderDelivery({
   mainIndex: 2,
   starterIndex: 2,
 });
+
+const arryy = [7, 8, 9];
+const badNewArr = [1, 2, arryy[0], arryy[1], arryy[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+//Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//Join 2 arrays
+const menu123 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu123);
+
+//Iterables: arrays, strings, maps, sets
+//objects are not iterable
+const str = 'Jonas';
+const letters = [...str];
+console.log(letters);
+console.log(...str);
+
+// const ingredients = [
+//   prompt('lets make pasta! Ingredient 1?'),
+//   prompt('lets make pasta! Ingredient 2?'),
+//   prompt('lets make pasta! Ingredient 3?'),
+// ];
+// console.log(ingredients);
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+//Destructuring
+//Rest Pattern and Parameters
+//SPREAD, BECAUSE ON RIGHT SIDE OF=
+const arrt = [1, 2, ...[3, 4]];
+//Resr because on LEFT side of =
+const [aa, bb, ...others] = [1, 2, 3, 4, 5];
+console.log(aa, bb, others);
+const [pizza, , risottp, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risottp, otherFood);
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+//Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 3);
+
+const xx = [23, 5, 7];
+add(...xx);
+restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
+// Short-circuiting
+console.log(3 || 'Jona');
+console.log('' || 'jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+//NULLISH:null and undefined
+const guestCorrect = restaurant.numGuests ?? 10;
+
+console.log('---AND---');
+
+console.log(0 && 'jonas');
+console.log(7 && 'jonas');
+console.log('Hello' && '23' && null && 'jonas');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'soinach');
+}
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu2) console.log(item);
+for (const item of menu2.entries()) {
+  console.log(`${item[0] + 1}:${item[1]}`);
+}
+for (const [i, el] of menu2.entries()) {
+  console.log(`${i + 1}:${el}`);
+}
+console.log(restaurant.openingHours.mon?.open);
+
+const days = ['mon', 'tue', 'wed'];
+for (const day of days) {
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open;
+  console.log(`on ${day}, we open at ${open}`);
+}
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+let openStr = `we  are open in ${properties.length} days`;
+for (const day of properties) {
+  openStr += `${day}`;
+}
+console.log(openStr);
+
+const values = Object.values(openingHours);
+
+const ordersSet = new Set(['Pasta', 'Pizza', 'Risotto', 'Pizza']);
+console.log(ordersSet);
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+console.log(ordersSet);
+ordersSet.delete('Garlic Bread');
+console.log(ordersSet);
+console.log(ordersSet.has('Garlic Bread'));
+for (const order of ordersSet) console.log(order);
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef']).size);
+
+//Maps (Data-Structure)
+const rest = new Map();
+rest.set('name', 'classico italino');
+rest.set(1, 'Firenze, Italy');
+
+console.log(rest.get(1));
+
+console.log(rest.has('categories'));
+rest.delete(1);
+console.log(rest);
+console.log(rest.size);
+
+const arrr = [1, 2];
+rest.set(arrr, 'Test');
+console.log(rest.size);
+console.log(rest.get(arrr));
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'JAVA'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again'],
+]);
+console.log(question);
+
+//Convvert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}:${value}`);
+}
+const ANSWER = Number(prompt('Your Answer'));
+console.log(ANSWER);
+
+console.log(question.get(question.get('correct') === ANSWER));
+
+console.log(...question);
+console.log([...question.entries()]);
+console.log([...question.values()]);
+console.log([...question.keys()]);
+
+const airLine = 'TAP Air Portugal';
+console.log(airLine[2]);
+console.log(airLine.length);
+console.log(airLine.indexOf('o'));
+console.log(airLine.lastIndexOf('r'));
+console.log(airLine.slice(4, 7));
+console.log(airLine.slice(0, airLine.indexOf(' ')));
+console.log(airLine.slice(-2));
+console.log(airLine.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat');
+  else console.log('YOU GOT LUCKY');
+};
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('Jonas'));
+console.log(airLine.toLowerCase());
+console.log(airLine.toUpperCase());
+const passenger = 'jOnAs';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+console.log();
+
+//comparing emails
+const email = 'hello@jonas.io';
+const loginEmail = 'Hello@jonas.Io\n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+const normalizedEmail = loginEmail.toLowerCase().trim;
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+//replacing
+const priceGB = '288,97';
+const priceGB_Replace = priceGB.replaceAll('8', '7');
+console.log(priceGB_Replace);
+console.log(priceGB.includes('88'));
+console.log(priceGB.startsWith('88'));
+console.log('a+very+nice+string'.split('+'));
+
+const capitalizeName = function (name) {
+  const name0 = name.split(' ');
+  const namesUpper = [];
+  for (const n of name0) {
+    n[0].toUpperCase() + n.slice(1);
+  }
+};
+capitalizeName('jessica ann smith davis');
+
+//Padding
+const message = 'Go to gate 23!';
+console.log('Jonas'.padStart(25, '+'));
